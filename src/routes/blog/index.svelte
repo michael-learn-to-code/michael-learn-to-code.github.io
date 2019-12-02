@@ -1,8 +1,10 @@
 <script context="module">
   export function preload({ params, query }) {
-    return this.fetch(`blog.json`).then(r => r.json()).then(posts => {
-      return { posts };
-    });
+    return this.fetch(`blog.json`)
+      .then(r => r.json())
+      .then(posts => {
+        return { posts };
+      });
   }
 </script>
 
@@ -12,16 +14,29 @@
 
 <style>
   h2,
-  .post-item-footer {
+  .post-item__footer {
     font-family: Rubik, sans-serif;
     font-weight: 700;
   }
 
-  .post-item-date {
-    color: #AAA;
+  .post-item__date {
+    color: #aaa;
     text-align: left;
     text-transform: uppercase;
     margin-right: 16px;
+  }
+  .post-item__tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    list-style: none;
+    padding: 0px;
+  }
+  .post-item__tags .tag {
+    color: #aaabbb;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin: 0px 10px;
   }
 
   hr {
@@ -41,12 +56,21 @@
     {/if}
     <div class="post-item">
       <h2>
-        <a rel='prefetch' href='blog/{post.slug}'>{post.title}</a>
+        <a rel="prefetch" href="blog/{post.slug}">{post.title}</a>
       </h2>
       <p>{post.excerpt}</p>
-      <div class="post-item-footer">
-        <span class="post-item-date">— {post.printDate}</span>
+      <div class="post-item__footer">
+        <span class="post-item__date">— {post.printDate}</span>
       </div>
+      {#if post.tagList}
+        <div class="post-item__tagList">
+          <ul class="post-item__tags">
+            {#each post.tagList as tag, index}
+              <li class="tag">#{tag}</li>
+            {/each}
+          </ul>
+        </div>
+      {/if}
     </div>
   {/each}
 </div>

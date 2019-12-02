@@ -1,26 +1,16 @@
 <style>
-  figure {
-    float: right;
-    margin: -3em -7em 2em 2em;
-    max-width: 400px;
-  }
-
-  figure img {
-    border-radius: 8px;
-  }
-
-  @media (max-width: 1020px) {
-    figure {
-      float: none;
-      margin: 0 auto 2em;
-    }
+  .home-container {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    margin: 2em 0;
+    min-height: 400px;
   }
 </style>
 
 <svelte:head>
-  <title>About</title>
+  <title>#MLTC</title>
 </svelte:head>
 
-<div class="container">
-  <h1>About</h1>
-</div>
+<div class="home-container">Michael Learn To Code</div>

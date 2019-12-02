@@ -15,42 +15,43 @@ const EXCERPT_SEPARATOR = '<!-- more -->'
 const renderer = new marked.Renderer()
 const linkRenderer = renderer.link;
 renderer.link = (href, title, text) => {
-    const html = linkRenderer.call(renderer, href, title, text)
+  const html = linkRenderer.call(renderer, href, title, text)
 
-    if (href.indexOf('/') === 0) {
-      // Do not open internal links on new tab
-      return html
-    } else if (href.indexOf('#') === 0) {
-      // Handle hash links to internal elements
-      const html = linkRenderer.call(renderer, 'javascript:;', title, text)
-      return html.replace(/^<a /, `<a onclick="document.location.hash='${href.substr(1)}';" `)
-    }
+  if (href.indexOf('/') === 0) {
+    // Do not open internal links on new tab
+    return html
+  } else if (href.indexOf('#') === 0) {
+    // Handle hash links to internal elements
+    const html = linkRenderer.call(renderer, 'javascript:;', title, text)
+    return html.replace(/^<a /, `<a onclick="document.location.hash='${href.substr(1)}';" `)
+  }
 
-    return html.replace(/^<a /, '<a target="_blank" rel="nofollow" ')
+  return html.replace(/^<a /, '<a target="_blank" rel="nofollow" ')
 }
 
 renderer.code = (code, language) => {
-  const parser = prism.languages[language] || prism.languages.html
+  const parser = prism.languages[ language ] || prism.languages.html
   const highlighted = prism.highlight(code, parser, language)
   return `<pre class="language-${language}"><code class="language-${language}">${highlighted}</code></pre>`
 }
 
-marked.setOptions({ renderer })
+marked.setOptions({renderer})
 
 const posts = fs.readdirSync(POSTS_DIR)
   .filter(fileName => /\.md$/.test(fileName))
   .map(fileName => {
     const fileMd = fs.readFileSync(path.join(POSTS_DIR, fileName), 'utf8')
-    const { data, content: rawContent } = matter(fileMd)
-    const { title, date } = data
-    const slug = fileName.split('.')[0]
+    const {data, content: rawContent} = matter(fileMd)
+    const {title, date, tags} = data
+    const slug = fileName.split('.')[ 0 ]
+    const tagList = !!tags && tags.split(',').map(t => t.trim()) || []
     let content = rawContent
     let excerpt = ''
 
     if (rawContent.indexOf(EXCERPT_SEPARATOR) !== -1) {
       const splittedContent = rawContent.split(EXCERPT_SEPARATOR)
-      excerpt = splittedContent[0]
-      content = splittedContent[1]
+      excerpt = splittedContent[ 0 ]
+      content = splittedContent[ 1 ]
     }
 
     const html = marked(content)
@@ -66,6 +67,7 @@ const posts = fs.readdirSync(POSTS_DIR)
       excerpt,
       printDate,
       printReadingTime,
+      tagList,
     }
   })
 

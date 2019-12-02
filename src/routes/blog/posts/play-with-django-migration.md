@@ -1,12 +1,12 @@
 ---
 title: Play with Django migration
 date: "2019-11-28"
+tags: Django, migration
 ---
-
-# Get Started
 
 In this post, I will show you a little magic of Django migration by resolving a weird issue.
 
+<!-- more -->
 # Steps to reproduce
 
 1. Create a Django project
