@@ -35,9 +35,7 @@ For each image, algorithms will produce a list of at most 3 scene categories in 
 
 We follow a similar metric to the classification tasks of the ILSVRC. For each image $$i$$, an algorithm will produce 3 labels $$l\_{i,j} , j = 1..3$$ . For this competition each image has one ground truth label $g_i$, and the error for that image is:
 
-$$
-e*i=\min_j{d(l*{ij}, g_i)}
-$$
+$e_i=\min_j{d(l_{ij}, g_i)}$
 
 Where
 $$
