@@ -32,7 +32,8 @@ export default {
 			replace({
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode),
-				'process.env.GTM_ID': JSON.stringify('GTM-P6NR5XZ')
+				'process.env.GTM_ID': JSON.stringify('GTM-P6NR5XZ'),
+				'process.env.GOOGLE_ADSENSE_ID': JSON.stringify('ca-pub-1900547133774845')
 			}),
 			svelte({
 				dev,
