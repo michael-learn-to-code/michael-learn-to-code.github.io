@@ -183,3 +183,12 @@ Save buffer to file
 ```
 :save-buffer buff.txt
 ```
+
+#### How to detach nested tmux
+
+<kbd>CTRL</kbd>+<kbd>b</kbd>&emsp;<kbd>CTRL</kbd>+<kbd>b</kbd>&emsp;<kbd>d</kbd>
+
+The situation here is, you use tmux on local, then ssh to a server, then open tmux on server. Now you want to detach the tmux session on server.
+
+The first combination will tell local tmux to listen your commands.
+All next keys will be sent to remote tmux by your local tmux
