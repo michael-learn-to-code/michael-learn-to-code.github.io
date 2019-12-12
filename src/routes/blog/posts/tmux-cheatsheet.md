@@ -192,3 +192,16 @@ The situation here is, you use tmux on local, then ssh to a server, then open tm
 
 The first combination will tell local tmux to listen your commands.
 All next keys will be sent to remote tmux by your local tmux
+
+
+#### How to attach loss tmux session
+
+Sometime we suddenly close the iterm window without exiting tmux correctly. 
+After that, all processes keep running. Now we need to attach back to previous session, then stop the process.
+
+first, list all sessions by `tmux ls` command. then try to attach session by `tmux a -t <session id>`
+if you got error: 
+`sessions should be nested with care, unset $TMUX to force`
+then, you need to follow the instruction: `unset TMUX`
+Now, you can freely attach to any session.
+
