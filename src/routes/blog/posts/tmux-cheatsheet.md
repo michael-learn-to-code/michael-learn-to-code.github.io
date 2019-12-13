@@ -205,6 +205,10 @@ if you got error:
 then, you need to follow the instruction: `unset TMUX`
 Now, you can freely attach to any session.
 
+#### Toggle between horizontal layout and vertical layout
+
+<kbd>CTRL</kbd>+<kbd>b</kbd>&emsp;<kbd>SPACE</kbd>
+
 
 ## References
 
