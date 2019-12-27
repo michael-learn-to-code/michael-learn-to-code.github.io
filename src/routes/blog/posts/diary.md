@@ -80,3 +80,4 @@ new way
 
 Week points:
 - have to use brain for css selector.
+- no intellisense, easy for typo :(
