@@ -1,16 +1,26 @@
-<style>
-  .home-container {
-    align-items: center;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    margin: 2em 0;
-    min-height: 400px;
+<script context="module">
+  let showAll = false
+  export function preload({ params, query }) {
+    return this.fetch(`blog.json`)
+      .then(r => r.json())
+      .then(posts => {
+        return { posts: showAll ? posts : posts.slice(0, 9) };
+      });
   }
-</style>
+</script>
+
+<script>
+  import PostThumbnail from '../components/PostThumbnail.svelte'
+  export let posts;
+
+</script>
 
 <svelte:head>
-  <title>#MLTC</title>
+  <title>#MLTC - Michael Learn To Code</title>
 </svelte:head>
 
-<div class="home-container">Michael Learn To Code</div>
+<main class="flex flex-col content-center w-full max-w-full p-12">
+    {#each posts as post, index}
+      <PostThumbnail post={post} />
+    {/each}
+</main>

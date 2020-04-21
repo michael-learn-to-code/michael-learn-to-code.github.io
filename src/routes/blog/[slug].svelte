@@ -67,12 +67,13 @@
 
     </script>
   {/if}
+    <link rel="stylesheet" href="highlight.css" />
   <title>{post.title}</title>
 </svelte:head>
 
 <header>
   <p>{post.printDate} ~ {post.printReadingTime}</p>
-  <h1>{post.title}</h1>
+  <h1 class="text-5xl text-gray-900">{post.title}</h1>
   <hr />
 </header>
 <div class="container">
