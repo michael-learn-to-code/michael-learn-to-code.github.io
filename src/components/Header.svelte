@@ -1,21 +1,8 @@
 <script>
-  import Logo from './Logo.svelte'
-  import Nav from './Nav.svelte'
-
-  export let segment
+  import Nav from "./Nav.svelte";
+  export let segment;
 </script>
 
-<style>
-  header {
-    display: flex;
-    margin: 0 auto;
-    max-width: 1400px;
-    padding: 2em;
-    width: 100%;
-  }
-</style>
-
-<header>
-  <Logo />
+<header class="flex w-screen p-2 my-auto max-w-screen-lg ">
   <Nav {segment} />
 </header>
