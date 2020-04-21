@@ -10,7 +10,7 @@
     "sapper:dev": "sapper dev",
     "dev": "run-p --race watch:tailwind sapper:dev",
     "sapper:export": "sapper export",
-    "export": "run-p --race build:tailwind sapper:export",
+    "export": "npm run build:tailwind && sapper export",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
