@@ -5,6 +5,8 @@ date: 2018-08-22 00:00:00 +0300
 tags: deep_learning, fastai
 description: Summary of my lesson learnt from Playing with Zalo Landmark Challenge
 mathjax: true
+imageId: QsJg2IuWPSE
+imageAuthor: Eric Ward
 toc: true
 ---
 

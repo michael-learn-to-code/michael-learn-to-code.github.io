@@ -6,10 +6,15 @@ date: 2018-09-11 00:00:00 +0300
 tags: Machine learning, Gradient Descent
 mathjax: true
 comment: true
+imageId: i9sV0g3tF94
+imageAuthor: Maria Teneva
 toc: true
 categories:
 - Machine learning
 ---
+
+Thuật toán GD có thể mô tả giống như quá trình lái xe xuống một con dốc trong sương mù (tầm nhìn xa 10m). Mục tiêu là đến được đúng chân dốc.
+<!-- more -->
 
 Thuật toán GD có thể mô tả giống như quá trình lái xe xuống một con dốc trong sương mù (tầm nhìn xa 10m). Mục tiêu là đến được đúng chân dốc.
 
