@@ -1,8 +1,10 @@
 <script>
   export let photoId = ''
   export let alt = ''
-  const supportedWidths = [750, 1050, 1350, 1500]
-  let srcset = supportedWidths.map(w => `https://images.unsplash.com/photo-${photoId}?w-${w}&q=80 ${w}w`).join(', ')
+  export let author = ''
+  let src = `https://source.unsplash.com/${photoId}/1600x900`
+  let href = `https://unsplash.com/photos/${photoId}}`
+
 </script>
 <style>
   .banner {
@@ -17,9 +19,9 @@
 </style>
 <div class="w-full">
 <div class="w-full overflow-hidden h-30vh" >
-<img class="banner" {alt} {srcset} />
+<img class="banner" {alt} {src} />
 </div>
-  <div class="">
+  <div class="text-left">
     <span class="credit-text">Photo by</span>
-    <a class="credit-link" href="https://unsplash.com/photos/PQHOmT-vkgA">Norbert Kowalczyk</a> <span class="credit-text">on</span> <a class="credit-link" href="https://unsplash.com/">Unsplash</a></div>
+    <a class="credit-link " {href}>{author}</a> <span class="credit-text">on</span> <a class="credit-link" href="https://unsplash.com/">Unsplash</a></div>
 </div>

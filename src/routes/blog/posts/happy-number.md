@@ -4,14 +4,18 @@ date: 2020-04-12 00:00:00 +0300
 tags: Algorithms, Swift
 description: Happy Number problem
 mathjax: false
+imageId: ON2HazEg5rE
+imageAuthor: Claudio Schwarz
 toc: true
 ---
 
-Happy Number problem
+Write an algorithm to determine if a number n is "happy".
+
+A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it **loops endlessly in a cycle** which does not include 1. Those numbers for which this process ends in 1 are happy numbers.
 
 <!-- more -->
 
-# Happy Number
+# Problem
 
 Write an algorithm to determine if a number n is "happy".
 
@@ -76,7 +80,7 @@ Trong 10 số từ 0 -> 9, có thể thấy chỉ có số 1 và số 7 là Happ
 
 Nên, nếu trong quá trình tính, mà tổng xuất hiện 1 hoặc 7 thì có thể kết luận là Happy Number. Nếu tổng là 1 chữ số mà khác 1 và 7 thì không thể là Happy Number.
 
-# Solution
+# Code
 
 ```swift
 // extension Int type to calculate sum of square of its digits

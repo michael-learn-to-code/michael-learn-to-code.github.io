@@ -1,5 +1,4 @@
 <script>
-  import UnsplashImage from "../components/UnsplashImage.svelte"
 </script>
 
 <style>
@@ -15,8 +14,7 @@
 </style>
 
 <div class="layout">
-  <main class="flex flex-col w-full max-w-full">
-    <UnsplashImage photoId="1584852498908-85e3e7bb303a" alt="find myself in space" />
+  <main class="flex flex-col items-center w-full max-w-full">
     <slot />
   </main>
 </div>

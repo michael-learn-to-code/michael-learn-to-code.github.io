@@ -47,7 +47,15 @@ const posts = fs
   .map((fileName) => {
     const fileMd = fs.readFileSync(path.join(POSTS_DIR, fileName), "utf8");
     const { data, content: rawContent } = matter(fileMd);
-    const { title, date, tags, mathjax = false } = data;
+    const {
+      title,
+      date,
+      tags,
+      mathjax = false,
+      image,
+      imageAuthor,
+      imageId,
+    } = data;
     const slug = fileName.split(".")[0];
     const tagList = (!!tags && tags.split(",").map((t) => t.trim())) || [];
     let content = rawContent;
@@ -69,10 +77,13 @@ const posts = fs
       slug,
       html,
       date,
-      excerpt,
+      excerpt: excerpt ? excerpt.substring(0, 100) + "..." : "",
       printDate,
       printReadingTime,
       tagList,
+      imageId,
+      image,
+      imageAuthor,
       mathjax,
     };
   });

@@ -5,9 +5,12 @@ tags: Algorithms, Swift
 description: Move Zeros problem
 mathjax: false
 toc: true
+imageId: iar-afB0QQw
+imageAuthor: Markus Spiske
 ---
 
 Move Zeros problem
+Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
 
 <!-- more -->
 
