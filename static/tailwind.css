@@ -1,5 +1,21 @@
 @tailwind base;
 
+html, body, #sapper {
+  @apply w-screen h-screen;
+}
+/**
+ * styles for markdown
+ **/
+h1 {
+font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+
 @tailwind components;
 
 @tailwind utilities;
+
+
+

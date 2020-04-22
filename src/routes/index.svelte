@@ -21,7 +21,7 @@
 </svelte:head>
 
     <UnsplashImage photoId="PQHOmT-vkgA" author="Norbert Kowalczyk" alt="find myself in space" />
-<main class="flex flex-col content-center w-full max-w-full p-12">
+<main class="flex flex-col content-center w-full max-w-full lg:p-4 sm:p-2 md:p-2">
     {#each posts as post, index}
       <PostThumbnail post={post} />
     {/each}

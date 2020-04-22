@@ -11,7 +11,7 @@
     </div>
   {/if}
     <section class="flex flex-col col-span-3">
-    <h2 class="text-4xl font-bold tracking-wide">{post.title}</h2>
+    <h2 class="text-xl font-bold tracking-wide">{post.title}</h2>
     <p class="text-sm italic tracking-wide text-gray-800">{post.excerpt}</p>
     </section>
   </div>
@@ -23,7 +23,7 @@
             {/each}
       {/if}
     </div>
-    <div class="flex ml-auto">
+    <div class="flex ml-auto text-xs">
       {post.printDate}
     </div>
   </section>

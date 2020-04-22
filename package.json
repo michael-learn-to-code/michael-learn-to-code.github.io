@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "watch:tailwind": "postcss static/tailwind.css -o static/index.css -w",
-    "build:tailwind": "NODE_ENV=production postcss static/tailwind.css -o static/index.css",
+    "watch:tailwind": "postcss static/tailwind.css -o static/base.css -w",
+    "build:tailwind": "NODE_ENV=production postcss static/tailwind.css -o static/base.css",
     "build": "npm run build:tailwind && sapper build --legacy",
     "sapper:dev": "sapper dev",
     "dev": "run-p --race watch:tailwind sapper:dev",
