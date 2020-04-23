@@ -3,6 +3,7 @@ title: Move zeros
 date: 2020-04-13 00:00:00 +0300
 tags: Algorithms, Swift
 description: Move Zeros problem
+keywords: algorithms,swift, move zero, code
 mathjax: false
 toc: true
 imageId: iar-afB0QQw

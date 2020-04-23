@@ -11,6 +11,7 @@ const contents = JSON.stringify(
       imageId: post.imageId,
       image: post.image,
       imageAuthor: post.imageAuthor,
+      metadata: post.metadata,
     };
   })
 );

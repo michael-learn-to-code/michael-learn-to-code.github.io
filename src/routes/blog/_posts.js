@@ -55,6 +55,8 @@ const posts = fs
       image,
       imageAuthor,
       imageId,
+      description,
+      keywords,
     } = data;
     const slug = fileName.split(".")[0];
     const tagList = (!!tags && tags.split(",").map((t) => t.trim())) || [];
@@ -85,6 +87,10 @@ const posts = fs
       image,
       imageAuthor,
       mathjax,
+      metadata: {
+        description,
+        keywords,
+      },
     };
   });
 
