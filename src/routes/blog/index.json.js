@@ -12,6 +12,7 @@ const contents = JSON.stringify(
       image: post.image,
       imageAuthor: post.imageAuthor,
       metadata: post.metadata,
+      tocHtml: post.tocHtml,
     };
   })
 );

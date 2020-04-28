@@ -5,6 +5,7 @@ const marked = require("marked");
 const matter = require("gray-matter");
 const formatDate = require("date-fns/format");
 const readingTime = require("reading-time");
+const tocParser = require("markdown-toc");
 
 // Support JSX syntax highlighting
 require("prismjs/components/prism-jsx.min");
@@ -47,6 +48,7 @@ const posts = fs
   .map((fileName) => {
     const fileMd = fs.readFileSync(path.join(POSTS_DIR, fileName), "utf8");
     const { data, content: rawContent } = matter(fileMd);
+
     const {
       title,
       date,
@@ -57,11 +59,17 @@ const posts = fs
       imageId,
       description,
       keywords,
+      toc = false,
     } = data;
     const slug = fileName.split(".")[0];
     const tagList = (!!tags && tags.split(",").map((t) => t.trim())) || [];
     let content = rawContent;
     let excerpt = "";
+    let tocHtml = "";
+    if (toc) {
+      const tocContent = tocParser(rawContent).content;
+      tocHtml = marked(tocContent);
+    }
 
     if (rawContent.indexOf(EXCERPT_SEPARATOR) !== -1) {
       const splittedContent = rawContent.split(EXCERPT_SEPARATOR);
@@ -79,7 +87,7 @@ const posts = fs
       slug,
       html,
       date,
-      excerpt: excerpt ? excerpt.substring(0, 100) + "..." : "",
+      excerpt: excerpt,
       printDate,
       printReadingTime,
       tagList,
@@ -87,6 +95,7 @@ const posts = fs
       image,
       imageAuthor,
       mathjax,
+      tocHtml,
       metadata: {
         description,
         keywords,

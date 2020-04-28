@@ -14,11 +14,12 @@
 </script>
 
 <script>
-  import UnsplashImage from '../../components/UnsplashImage.svelte'
+  import UnsplashImage from "../../components/UnsplashImage.svelte";
   export let post;
 </script>
 
 <style>
+
 </style>
 
 <svelte:head>
@@ -49,40 +50,49 @@
 
     </script>
   {/if}
-    <link rel="stylesheet" href="highlight.css" />
+  <link rel="stylesheet" href="highlight.css" />
   <title>{post.title}</title>
-  <meta name="description" content="{post.metadata.description}" />
-  <meta name="keywords" content="{post.metadata.keywords}"/>
+  <meta name="description" content={post.metadata.description} />
+  <meta name="keywords" content={post.metadata.keywords} />
 
   <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.mi4t.me/{post.slug}">
-  <meta property="og:title" content="{post.metadata.title}">
-  <meta property="og:description" content="{post.metadata.description}">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.mi4t.me/{post.slug}" />
+  <meta property="og:title" content={post.metadata.title} />
+  <meta property="og:description" content={post.metadata.description} />
   {#if post.metadata.thumb}
-  <meta property="og:image" content="{post.metadata.thumb}">
+    <meta property="og:image" content={post.metadata.thumb} />
   {/if}
 
   <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://www.mi4t.me/{post.slug}">
-  <meta property="twitter:title" content="{post.metadata.title}">
-  <meta property="twitter:description" content="{post.metadata.description}">
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.mi4t.me/{post.slug}" />
+  <meta property="twitter:title" content={post.metadata.title} />
+  <meta property="twitter:description" content={post.metadata.description} />
   {#if post.metadata.thumb}
-  <meta property="twitter:image" content="{post.metadata.thumb}">
+    <meta property="twitter:image" content={post.metadata.thumb} />
   {/if}
 </svelte:head>
 
 <header class="flex flex-col items-center content-center">
   {#if post.imageId}
-  <UnsplashImage photoId={post.imageId} author={post.imageAuthor} alt={post.title} />
+    <UnsplashImage
+      photoId={post.imageId}
+      author={post.imageAuthor}
+      alt={post.title} />
   {/if}
   <p class="italic text-gray-500">{post.printDate} ~ {post.printReadingTime}</p>
-  <h1 class="text-6xl text-gray-900">{post.title}</h1>
+  <h1 class="text-4xl text-gray-900">{post.title}</h1>
   <hr />
 </header>
 <div class="container">
-  <article class="content">
+  <article class="content p-5">
+    {#if post.tocHtml}
+      <div id="toc_container" class="toc p-10 block">
+        <span class="text-base italic">Table of content</span>
+        {@html post.tocHtml}
+      </div>
+    {/if}
     {@html post.html}
   </article>
   <hr />
