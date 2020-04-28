@@ -67,7 +67,9 @@ const posts = fs
     let excerpt = "";
     let tocHtml = "";
     if (toc) {
-      const tocContent = tocParser(rawContent).content;
+      const tocContent = tocParser(rawContent, {
+        firsth1: false,
+      }).content;
       tocHtml = marked(tocContent);
     }
 
