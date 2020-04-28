@@ -5,13 +5,15 @@ tags: Algorithms, Swift
 description: Maximum Sub-Array problem
 mathjax: false
 toc: true
+imageId: PQinRWK1TgU
+imageAuthor: Faris Mohammed
 ---
 
 Maximum Sub-Array problem
 
 <!-- more -->
 
-# Problem
+## Problem
 
 Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
 
@@ -31,7 +33,7 @@ If you have figured out the O(n) solution, try coding another solution using the
 
 - Đồ họa: Tìm vùng ảnh sáng nhất.
 
-# Solution
+## Solution
 
 Thuật toán Kadane
 
@@ -95,7 +97,7 @@ input = [-2, -3, 4, -1, -2, 1, 5, -3]
 print(max_sum(input))
 ```
 
-# Result
+## Result
 
 ```
 202 / 202 test cases passed.

@@ -10,12 +10,13 @@ imageAuthor: Eric Ward
 toc: true
 ---
 
-TLTR:
+TL;DR:
 
 Deep learning is so hot and so hard!!!
 Vâng, DL đang rất nóng và rất khó. Thực sự với một người không có nền kiến thức toán tốt như mình, bắt đầu với ML nói chung và DL nói riêng giống như tìm đường trong một khu rừng chưa bao giờ đặt chân tới. Tất cả mọi thứ đều phức tạp và khó hiểu.
 Đã có lúc mình cố gắng học lại các kiến thức toán liên quan trước khi bắt tay vào học code ML. Nhưng thực sự không hợp.
 Việc nghe, đọc, nhớ những kiến thức tổng quát của toán quá khó mà lại nhanh quên. Chưa kể tới những cơn buồn ngủ khó cưỡng khi nghe các course Video.
+
 Tuy nhiên, may nhờ có cuộc thi của Zalo mà mình bắt đầu làm quen với Fastai. Và thực sự thích triết lý của họ. Jeremy nói rằng, học ML/DL giống như học cách chơi bóng vậy. Bạn nên nhảy vào chơi trước, rồi mới học luật, học các kỹ thuật liên quan....Chỉ có trải nghiệm làm thực tế mới giúp thấu hiểu được lý thuyết.
 
 Đến giờ, có thể nói mình đang ở đâu đó giữa không biết với biết, không hiểu với hiểu. Mọi thứ vẫn còn như một làn sương mờ ảo. Nhưng mình đã có nhiều động lực và động cơ để tìm hiểu nhiều hơn và hiểu nhiều hơn về ML/DL.
@@ -25,7 +26,7 @@ Một coder tay to đang bắt đầu học và làm ML/DL từ con số 0 :).
 
 # Problem description
 
-### Description:
+## Description:
 
 The goal of this challenge is to identify the Vietnam famous landscape depicted in a photograph. The data for this task comes from the Zalo Places dataset which contains 1M+ images belonging to 500+ unique Vietnam famous landscape places.
 
@@ -40,6 +41,7 @@ We follow a similar metric to the classification tasks of the ILSVRC. For each i
 $e_i=\min_j{d(l_{ij}, g_i)}$
 
 Where
+
 $$
 d(x,y)=\begin{cases}
 0\ \ \ if\ x=y\\
@@ -57,11 +59,11 @@ $$
 
 This is a kind of classification problem, which should be resolved by a CNN solution. So I'm going to try to use [fastai](https://github.com/fastai/fastai) to build a simple solution with a pre-trained network.
 
-# Setup an GPU-compute AWS instance with fastai
+## Setup an GPU-compute AWS instance with fastai
 
 You can refer [here](http://wiki.fast.ai/index.php/AWS_Spot_instances) to find out how to setup and create AWS instance with lowest cost via Spot Request. It's very helpful and good for your wallet.
 
-# Download data
+## Download data
 
 ```python
 ! ls data
@@ -84,7 +86,7 @@ Here I downloaded data and extracted already, so we have 2 folders: `TrainVal` c
 
 And inside the `TrainVal` directory, we have 103 subdirectories which corresponding to 103 classes (0-102)
 
-# Now do some code
+## Now do some code
 
 ```python
 # enable auto reload external code and display plot inline
@@ -563,7 +565,7 @@ And last layers includes our additional layers, we don't want to change them too
 
 That's all I understand for now :)
 
-### 7. Train full network with cycle_mult=2 until over-fitting
+### 6. Train full network with cycle_mult=2 until over-fitting
 
 ```python
 learn.fit(lrs, 3, cycle_len=1, cycle_mult=2, best_save_name='test_unfreeze', metrics=(accuracy, topkerror))
@@ -636,9 +638,9 @@ After that, mysubmission.csv file is created, you can download it and submit. In
 
 ![Leaderboard](/Play-with-Zalo-Landmark-Challenge/lb_landmark.png)
 
-# Let's summary
+## Let's summary
 
-## Gains
+### Gains
 
 - AWS Spot instance is great
 - We should check and do clean up data before processing
@@ -646,11 +648,11 @@ After that, mysubmission.csv file is created, you can download it and submit. In
 - It's easy to use a pre-trained model too.
 - TTA is cool
 
-## Pain
+### Pain
 
 - I don't know why it's overfit and how to resolve it???
 
-## Ideas
+### Ideas
 
 - Try with bigger network like resnet101_64 or interception
 - Or maybe try some networks then sum them.

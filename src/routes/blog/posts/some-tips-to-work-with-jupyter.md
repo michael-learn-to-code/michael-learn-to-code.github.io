@@ -5,12 +5,17 @@ image: /img/posts/some-tips-to-work-with-jupyter-notebook.png
 date: 2018-08-29 00:00:00 +0300
 tags: jupyter, fastai
 description: These tips for easier co-working with Jupyter notebook
+keywords: jupyter, notebook, tips
 comment: true
+imageId: 3ym6i13Y9LU
+imageAuthor: Mike Tinnion
 toc: true
 categories:
-- Jupiter
-- development
+  - Jupiter
+  - development
 ---
+
+# Some tips to work with Jupyter Notebook
 
 ## Folder structure
 

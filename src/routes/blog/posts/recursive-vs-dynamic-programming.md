@@ -28,7 +28,7 @@ Lặp lại thuật toán trên tập dữ liệu nhỏ dần để thu được
 
 F(n) = F(n-1) + F(n-2) = F(n-2) + F(n-3) + Fc(n-2) {from cache}
 
-# Code
+## Code
 
 ```swift
 func fibRecursive(x: Int,_ count: inout Int) -> Int {
@@ -69,7 +69,7 @@ print(fibDynamic(x: 20, cache: &cache, &count))
 print("Called: \(count)")
 ```
 
-# Result
+## Result
 
 - Recursive function called **_13529_** times
 - Dynamic function called **_37_** times

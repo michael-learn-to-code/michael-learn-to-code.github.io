@@ -14,6 +14,11 @@ h2 {
   font-size: 1.4rem;
 }
 
+article.content h3 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
 article.content p {
   line-height: 2rem;
 }
