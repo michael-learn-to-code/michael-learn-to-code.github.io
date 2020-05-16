@@ -4,9 +4,8 @@
     // this file is called [slug].html
     const res = await this.fetch(`blog/${params.slug}.json`);
     const data = await res.json();
-
     if (res.status === 200) {
-      return { post: data };
+      return { posts: data.posts, post: data.post };
     } else {
       this.error(res.status, data.message);
     }
@@ -15,7 +14,9 @@
 
 <script>
   import UnsplashImage from "../../components/UnsplashImage.svelte";
+  import Sidebar from "../../components/Sidebar.svelte";
   export let post;
+  export let posts;
 </script>
 
 <style>
@@ -83,7 +84,8 @@
   <h1 class="text-4xl text-gray-900">{post.title}</h1>
   <hr />
 </header>
-<div class="container">
+<div class="container flex flex-row">
+  <Sidebar {posts} />
   <article class="content p-5">
     {#if post.tocHtml}
       <div id="toc_container" class="toc p-10 block">
