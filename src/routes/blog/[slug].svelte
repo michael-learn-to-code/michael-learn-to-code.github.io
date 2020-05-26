@@ -14,9 +14,25 @@
 
 <script>
   import UnsplashImage from "../../components/UnsplashImage.svelte";
-  import Sidebar from "../../components/Sidebar.svelte";
+  import RelatedPosts from "../../components/RelatedPosts.svelte";
   export let post;
   export let posts;
+
+  function getRandomSubarray(arr, size) {
+    console.log("render again");
+    var shuffled = arr.slice(0),
+      i = arr.length,
+      min = i - size,
+      temp,
+      index;
+    while (i-- > min) {
+      index = Math.floor((i + 1) * Math.random());
+      temp = shuffled[index];
+      shuffled[index] = shuffled[i];
+      shuffled[i] = temp;
+    }
+    return shuffled.slice(min);
+  }
 </script>
 
 <style>
@@ -84,8 +100,7 @@
   <h1 class="text-4xl text-gray-900">{post.title}</h1>
   <hr />
 </header>
-<div class="container flex flex-row">
-  <Sidebar {posts} />
+<div class="container flex flex-row gap-3">
   <article class="content p-5">
     {#if post.tocHtml}
       <div id="toc_container" class="toc p-10 block">
@@ -94,6 +109,9 @@
       </div>
     {/if}
     {@html post.html}
+    <footer>
+      <RelatedPosts posts={getRandomSubarray(posts, 10)} />
+    </footer>
   </article>
   <hr />
 </div>

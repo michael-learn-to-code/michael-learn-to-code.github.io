@@ -1,10 +1,11 @@
 <script>
   export let posts;
+  export let maxPosts = 10;
 </script>
 
-<nav class="sidebar flex-none">
+<nav>
   <ul>
-    {#each { length: posts.length } as _, i}
+    {#each { length: maxPosts } as _, i}
       <li>
         <a class="underline text-sm italic" href={`blog/${posts[i].slug}`}>
           {posts[i].title}
