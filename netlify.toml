@@ -1,9 +1,3 @@
 [build]
   command = "npm run export"
   publish = "__sapper__/export"
-
-[[plugins]]
-package = "@netlify/plugin-sitemap"
-
-  [plugins.inputs]
-  buildDir = "__sapper__/export"
