@@ -33,6 +33,11 @@
     <Ads />
   </div>
   <div class="content sm:col-start-3 sm:col-end-12">
+    <div class="my-2 underline text-lg">
+      <a target="_blank" href="https://slides.com/ducvuanh/resume/fullscreen">
+        I'm looking for a remote job. Check my Resume here
+      </a>
+    </div>
     {#each posts as post, index}
       <PostThumbnail {post} />
     {/each}
