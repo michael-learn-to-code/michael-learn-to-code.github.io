@@ -27,11 +27,6 @@
 <main
   class="flex flex-col content-center w-full max-w-full lg:p-4 sm:p-2 md:p-2
   grid sm:grid-cols-12">
-  <div
-    class="ads-display sm:col-start-1 sm:col-end-3 flex flex-col items-center
-    invisible hidden sm:visible sm:block">
-    <Ads />
-  </div>
   <div class="content sm:col-start-3 sm:col-end-12">
     <div class="my-2 underline text-lg">
       <a target="_blank" href="https://slides.com/ducvuanh/resume/fullscreen">
