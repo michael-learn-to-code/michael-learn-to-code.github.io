@@ -1,6 +1,6 @@
 ---
 title: How to reduce docker image size
-date: 2020-06-11 00:00:00 +0300
+date: 2020-11-06 00:00:00 +0300
 tags: docker, container
 description: How to reduce docker image size
 mathjax: false
@@ -14,9 +14,11 @@ The thing is we could reduce the image size
 
 <!-- more -->
 
+
 # Step 1: Choose a light base image
 
 Normally, `alpine` or `busybox` are light images.
+
 
 # Step 2: Multi-stages build
 
