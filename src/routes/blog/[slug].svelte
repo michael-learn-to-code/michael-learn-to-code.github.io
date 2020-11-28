@@ -67,16 +67,16 @@
   <link rel="stylesheet" href="highlight.css" />
   <title>{post.title}</title>
   {#if post.metadata}
-    <meta name="description" content={post.metadata?.description} />
-    <meta name="keywords" content={post.metadata?.keywords} />
+    <meta name="description" content={post.metadata.description} />
+    <meta name="keywords" content={post.metadata.keywords} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.mi4t.me/{post.slug}" />
-    <meta property="og:title" content={post.metadata?.title} />
-    <meta property="og:description" content={post.metadata?.description} />
-    {#if post.metadata?.thumb}
-      <meta property="og:image" content={post.metadata?.thumb} />
+    <meta property="og:title" content={post.metadata.title} />
+    <meta property="og:description" content={post.metadata.description} />
+    {#if post.metadata.thumb}
+      <meta property="og:image" content={post.metadata.thumb} />
     {/if}
 
     <!-- Twitter -->
