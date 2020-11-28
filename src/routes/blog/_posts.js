@@ -1,21 +1,20 @@
-const fs = require("fs");
-const path = require("path");
-const prism = require("prismjs");
-const marked = require("marked");
-const matter = require("gray-matter");
-const formatDate = require("date-fns/format");
-const readingTime = require("reading-time");
-const tocParser = require("markdown-toc");
-
-// Support JSX syntax highlighting
-require("prismjs/components/prism-jsx.min");
-require("prismjs/components/prism-swift.min");
+import fs from 'fs';
+import path from 'path';
+import marked from 'marked';
+import matter from "gray-matter"
+import formatDate from "date-fns/format"
+import readingTime from "reading-time"
+import tocParser from "markdown-toc"
+import prism from "prismjs"
 
 const cwd = process.cwd();
-const POSTS_DIR = path.join(cwd, "src/routes/blog/posts/");
+const POSTS_DIR = path.join(cwd, "articles/");
+
 const EXCERPT_SEPARATOR = "<!-- more -->";
+
 const renderer = new marked.Renderer();
 const linkRenderer = renderer.link;
+
 renderer.link = (href, title, text) => {
   const html = linkRenderer.call(renderer, href, title, text);
 
@@ -61,6 +60,7 @@ const posts = fs
       keywords,
       toc = false,
     } = data;
+
     const slug = fileName.split(".")[0];
     const tagList = (!!tags && tags.split(",").map((t) => t.trim())) || [];
     let content = rawContent;
@@ -82,7 +82,10 @@ const posts = fs
     const html = marked(content);
     const readingStats = readingTime(content);
     const printReadingTime = readingStats.text;
-    const printDate = formatDate(new Date(date), "MMMM D, YYYY");
+    if (!date) {
+      console.log(fileName)
+    }
+    const printDate = date ? formatDate(new Date(date), "MMMM d, yyyy") : new Date()
 
     return {
       title: title || slug,
@@ -103,7 +106,8 @@ const posts = fs
         keywords,
       },
     };
-  });
+
+  })
 
 posts.sort((a, b) => {
   const dateA = new Date(a.date);
@@ -118,4 +122,4 @@ posts.forEach((post) => {
   post.html = post.html.replace(/^\t{3}/gm, "");
 });
 
-export default posts;
+export default posts

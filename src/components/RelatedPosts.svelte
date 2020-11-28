@@ -1,6 +1,6 @@
 <script>
-  export let posts;
-  export let maxPosts = 10;
+  export let posts: Array<TPost>;
+  export let maxPosts: number = 10;
 </script>
 
 <nav class="mt-6">

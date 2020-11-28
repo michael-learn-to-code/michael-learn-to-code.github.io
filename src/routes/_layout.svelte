@@ -1,21 +1,22 @@
-<script>
-
+<script lang="ts">
+  const siteTitle = process.env.SITE_TITLE;
+  const siteMeta = (process.env.SITE_META as unknown) as [TMeta];
 </script>
 
 <style>
-  :global(kbd) {
-    color: #fff;
-    background: #333;
-    border-radius: 4px;
-    box-shadow: 2px 2px 2px #aaa;
-    font-size: 22px;
-    padding: 5px 10px;
-    line-height: 33px;
+  main {
+    max-width: 100vw;
+    margin: auto;
+    box-sizing: border-box;
   }
 </style>
 
-<div class="layout">
-  <main class="flex flex-col items-center w-full max-w-full">
-    <slot />
-  </main>
-</div>
+<svelte:head>
+  <title>{siteTitle}</title>
+  {#each siteMeta as meta}
+    <meta type={meta.name} content={meta.value} />
+  {/each}
+</svelte:head>
+<main>
+  <slot />
+</main>

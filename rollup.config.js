@@ -1,123 +1,125 @@
-import resolve from "rollup-plugin-node-resolve";
-import replace from "rollup-plugin-replace";
-import commonjs from "rollup-plugin-commonjs";
-import svelte from "rollup-plugin-svelte";
-import babel from "rollup-plugin-babel";
+import path from 'path';
+import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
 
-import { terser } from "rollup-plugin-terser";
-import config from "sapper/config/rollup.js";
-import marked from "marked";
-import pkg from "./package.json";
+import commonjs from '@rollup/plugin-commonjs';
+import url from '@rollup/plugin-url';
+import svelte from 'rollup-plugin-svelte';
+import babel from '@rollup/plugin-babel';
+import sveltePreprocess from "svelte-preprocess";
+import { terser } from 'rollup-plugin-terser';
+import typescript from '@rollup/plugin-typescript';
+import config from 'sapper/config/rollup.js';
+import pkg from './package.json';
+
+
+const preprocessOptions = require("./svelte.config").preprocessOptions;
+const replaceOptions = require("./svelte.config").replaceOptions;
 
 const mode = process.env.NODE_ENV;
-const dev = mode === "development";
+const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const onwarn = (warning, onwarn) =>
-  (warning.code === "CIRCULAR_DEPENDENCY" &&
-    warning.message.includes("/@sapper/")) ||
+  (warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
+  (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) ||
+  (warning.code === 'THIS_IS_UNDEFINED') ||
   onwarn(warning);
-const markdown = () => ({
-  transform(md, id) {
-    if (!/\.md$/.test(id)) return null;
-    const data = marked(md);
-    return {
-      code: `export default ${JSON.stringify(data.toString())};`,
-    };
-  },
-});
+
+const preprocess = sveltePreprocess(preprocessOptions)
 
 export default {
   client: {
-    input: config.client.input(),
+    input: config.client.input().replace(/\.js$/, '.ts'),
     output: config.client.output(),
     plugins: [
-      replace({
-        "process.browser": true,
-        "process.env.NODE_ENV": JSON.stringify(mode),
-        "process.env.GTM_ID": JSON.stringify("GTM-P6NR5XZ"),
-        "process.env.GOOGLE_ADSENSE_ID": JSON.stringify(
-          "ca-pub-1900547133774845"
-        ),
-      }),
+      replace(replaceOptions),
       svelte({
         dev,
         hydratable: true,
-        emitCss: true,
+        preprocess,
+        emitCss: true
       }),
-      resolve(),
+      url({
+        sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
+        publicPath: '/client/'
+      }),
+      resolve({
+        browser: true,
+        dedupe: ['svelte']
+      }),
       commonjs(),
+      typescript({ sourceMap: dev }),
 
-      legacy &&
-        babel({
-          extensions: [".js", ".mjs", ".html", ".svelte"],
-          runtimeHelpers: true,
-          exclude: ["node_modules/@babel/**"],
-          presets: [
-            [
-              "@babel/preset-env",
-              {
-                targets: "> 0.25%, not dead",
-              },
-            ],
-          ],
-          plugins: [
-            "@babel/plugin-syntax-dynamic-import",
-            [
-              "@babel/plugin-transform-runtime",
-              {
-                useESModules: true,
-              },
-            ],
-          ],
-        }),
+      legacy && babel({
+        extensions: ['.js', '.mjs', '.html', '.svelte'],
+        babelHelpers: 'runtime',
+        exclude: ['node_modules/@babel/**'],
+        presets: [
+          ['@babel/preset-env', {
+            targets: '> 0.25%, not dead'
+          }]
+        ],
+        plugins: [
+          '@babel/plugin-syntax-dynamic-import',
+          ['@babel/plugin-transform-runtime', {
+            useESModules: true
+          }]
+        ]
+      }),
 
-      !dev &&
-        terser({
-          module: true,
-        }),
+      !dev && terser({
+        module: true
+      })
     ],
 
+    preserveEntrySignatures: false,
     onwarn,
   },
 
   server: {
-    input: config.server.input(),
+    input: { server: config.server.input().server.replace(/\.js$/, ".ts") },
     output: config.server.output(),
     plugins: [
-      replace({
-        "process.browser": false,
-        "process.env.NODE_ENV": JSON.stringify(mode),
-      }),
+      replace(replaceOptions),
       svelte({
-        generate: "ssr",
-        dev,
+        generate: 'ssr',
+        hydratable: true,
+        preprocess,
+        dev
       }),
-      resolve(),
+      url({
+        sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
+        publicPath: '/client/',
+        emitFiles: false // already emitted by client build
+      }),
+      resolve({
+        dedupe: ['svelte']
+      }),
       commonjs(),
-      markdown(),
+      typescript({ sourceMap: dev })
     ],
-    external: Object.keys(pkg.dependencies).concat(
-      require("module").builtinModules ||
-        Object.keys(process.binding("natives"))
-    ),
+    external: Object.keys(pkg.dependencies).concat(require('module').builtinModules),
 
+    preserveEntrySignatures: 'strict',
     onwarn,
   },
 
   serviceworker: {
-    input: config.serviceworker.input(),
+    input: config.serviceworker.input().replace(/\.js$/, '.ts'),
     output: config.serviceworker.output(),
     plugins: [
       resolve(),
       replace({
-        "process.browser": true,
-        "process.env.NODE_ENV": JSON.stringify(mode),
+        'process.browser': true,
+        'process.env.NODE_ENV': JSON.stringify(mode)
       }),
       commonjs(),
-      !dev && terser(),
+      typescript({ sourceMap: dev }),
+      !dev && terser()
     ],
 
+    preserveEntrySignatures: false,
     onwarn,
-  },
+  }
 };

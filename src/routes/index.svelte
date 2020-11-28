@@ -1,34 +1,33 @@
-<script context="module">
-  let showAll = true;
+<script context="module" lang="ts">
   export function preload({ params, query }) {
     return this.fetch(`blog.json`)
       .then((r) => r.json())
       .then((posts) => {
-        return { posts: showAll ? posts : posts.slice(0, 9) };
+        return { posts };
       });
   }
 </script>
 
-<script>
-  import PostThumbnail from "../components/PostThumbnail.svelte";
+<script lang="ts">
   import UnsplashImage from "../components/UnsplashImage.svelte";
-  import Ads from "../components/Ads.svelte";
-  export let posts;
+  import PostView from "../components/PostView.svelte";
+
+  export let posts: Array<TPost>;
 </script>
 
-<svelte:head>
-  <title>#MLTC - Michael Learn To Code</title>
-</svelte:head>
+<style>
+  .content {
+    padding: 1em;
+  }
+</style>
 
 <UnsplashImage
   photoId="PQHOmT-vkgA"
   author="Norbert Kowalczyk"
   alt="find myself in space" />
-<main
-  class="flex flex-col content-center w-full max-w-full lg:p-4 sm:p-2 md:p-2 grid sm:grid-cols-12">
-  <div class="content sm:col-start-3 sm:col-end-12">
-    {#each posts as post, index}
-      <PostThumbnail {post} />
-    {/each}
-  </div>
-</main>
+
+<section class="content">
+  {#each posts as post, index}
+    <PostView {post} />
+  {/each}
+</section>

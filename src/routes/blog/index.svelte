@@ -1,15 +1,15 @@
 <script context="module">
   export function preload({ params, query }) {
     return this.fetch(`blog.json`)
-      .then(r => r.json())
-      .then(posts => {
+      .then((r) => r.json())
+      .then((posts) => {
         return { posts };
       });
   }
 </script>
 
 <script>
-  export let posts;
+  export let posts: Array<TPost>;
 </script>
 
 <style>
@@ -55,9 +55,7 @@
       <hr />
     {/if}
     <div class="post-item">
-      <h2>
-        <a rel="prefetch" href="blog/{post.slug}">{post.title}</a>
-      </h2>
+      <h2><a rel="prefetch" href="blog/{post.slug}">{post.title}</a></h2>
       <p>{post.excerpt}</p>
       <div class="post-item__footer">
         <span class="post-item__date">— {post.printDate}</span>

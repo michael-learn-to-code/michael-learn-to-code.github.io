@@ -1,16 +1,7 @@
-<style>
-  .home-container {
-    align-items: center;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    margin: 2em 0;
-    min-height: 400px;
-  }
-</style>
-
 <svelte:head>
-  <title>#MLTC</title>
+	<title>About</title>
 </svelte:head>
 
-<div class="home-container">Michael Learn To Code</div>
+<h1>About this site</h1>
+
+<p>This is the 'about' page. There's not much here.</p>

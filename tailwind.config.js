@@ -1,30 +1,26 @@
-const plugin = require("tailwindcss/plugin");
+// tailwind.config.js
 
 module.exports = {
+  future: {
+    removeDeprecatedGapUtilities: true,
+  },
+  experimental: {
+    uniformColorPalette: true,
+    extendedFontSizeScale: true,
+    applyComplexClasses: true,
+  },
+  purge: {
+    // needs to be set if we want to purge all unused
+    // @tailwind/typography styles
+    mode: 'all',
+    content: ['./src/**/*.svelte', './src/**/*.html'],
+  },
   theme: {
-    extend: {
-      height: {
-        "30vh": "30vh",
-      },
+    container: {
+      center: true,
     },
+    extend: {},
   },
   variants: {},
-  plugins: [
-    plugin(function ({ addComponents }) {
-      const credits = {
-        ".credit-text": {
-          fontSize: "0.75rem",
-          color: "gray",
-        },
-        ".credit-link": {
-          fontSize: "0.75rem",
-          textDecoration: "underline",
-          "&:hover": {
-            color: "black",
-          },
-        },
-      };
-      addComponents(credits);
-    }),
-  ],
+  plugins: [require('@tailwindcss/typography')],
 };
