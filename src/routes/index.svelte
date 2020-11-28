@@ -26,7 +26,7 @@
   author="Norbert Kowalczyk"
   alt="find myself in space" />
 
-<section class="content">
+<section class="content lg:w-4/5 md:w-full flex m-auto flex-col">
   {#each posts as post, index}
     <PostView {post} />
   {/each}
